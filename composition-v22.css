@@ -1,0 +1,51 @@
+/* Edge-anchored artwork composition. Each image is scaled uniformly.
+   Stacking: header < map/side < bottom bar. */
+@media (min-width:801px){
+  :root{
+    --composition-header-h:calc(100vw * 117 / 2048);
+    --composition-footer-h:calc(100vw * 206 / 2048);
+    --composition-middle-h:calc(100dvh - var(--composition-header-h) - var(--composition-footer-h) + 56px);
+    /* Fit the entire left frame between the header and footer, without stretching. */
+    --composition-map-h:min(calc(var(--composition-middle-h) - 16px), calc((100vw - var(--composition-side-w) - 24px) * 0.60081));
+    --composition-side-w:calc(var(--composition-middle-h) * 1152 / 1552);
+    --composition-map-art-w:calc(var(--composition-map-h) * 1235 / 742);
+  }
+  html,body{height:100%;overflow:hidden}
+  .app-shell{width:100vw;height:100dvh;padding:0;margin:0;overflow:hidden}
+  .stage{display:grid;position:relative;width:100%;height:100%;grid-template-columns:minmax(0,1fr) var(--composition-side-w);grid-template-rows:var(--composition-header-h) minmax(0,1fr) var(--composition-footer-h);gap:0;background:#51351f;isolation:isolate;overflow:hidden}
+  .hud{grid-column:1/-1;grid-row:1;position:relative;top:0;left:0;width:100%;height:var(--composition-header-h);margin:0;padding:0 1.5%;min-height:0;z-index:1;background:none!important}
+  .hud .hud-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center top;image-rendering:auto}
+  .map-area{grid-column:1;grid-row:2;position:relative;left:0;top:0;margin:0!important;width:100%!important;height:var(--composition-map-h)!important;min-height:0;align-self:center;overflow:visible!important;isolation:auto;z-index:3;background:none!important;transform:translateX(36px)}
+  .map-area::before{content:"";position:absolute;inset:22px 0 0!important;width:100%!important;height:calc(100% - 22px)!important;background:#51351f url('assets/tiles/tile_wall(1).png') repeat;opacity:1;pointer-events:none;z-index:0}
+  .map-area::after{content:"";position:absolute;top:0;left:calc(var(--composition-map-h) * -45 / 742 - 7px);width:var(--composition-map-art-w);height:100%;background:url('assets/ui/ui_map_frame.webp') left top/100% 100% no-repeat;pointer-events:none;z-index:3}
+  .map-area .map{position:absolute;left:6.3%;top:50%;transform:translateY(-50%);width:calc(var(--composition-map-h) * 1.506);height:auto;max-height:none;aspect-ratio:24/13;min-width:0;box-sizing:border-box;border:0;border-radius:0;overflow:hidden;z-index:1}
+  .map-caption{z-index:4;left:7%;top:3%;width:87%}
+  .controls{grid-column:2;grid-row:2;position:relative!important;left:0;top:0;margin:-10px 0 0!important;width:var(--composition-side-w)!important;height:var(--composition-middle-h)!important;aspect-ratio:1152/1552!important;overflow:visible!important;z-index:4;isolation:auto;transform:translateX(-8px)}
+  .controls .side-panel-art{width:100%;height:100%;object-fit:contain!important;object-position:center;image-rendering:auto}
+  .controls .controls-inner{overflow:hidden!important}
+  .bottom-bar{grid-column:1/-1;grid-row:3;position:relative;width:100%;height:var(--composition-footer-h)!important;margin:0!important;padding:0!important;min-height:0;z-index:5;overflow:visible;background:none!important}
+  .bottom-bar .bottom-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;image-rendering:auto}
+}
+@media (max-width:800px){
+  .stage{gap:0!important}
+  .hud{z-index:1!important;background:none!important;aspect-ratio:2048/117!important;min-height:0!important}
+  .hud .hud-art{object-fit:contain!important}
+  .map-area{z-index:3!important;margin-top:-1%!important}
+  .map-area::after{background-size:contain!important;background-position:left top!important}
+  .controls{z-index:4!important;margin-top:-1%!important;background:none!important}
+  .controls .side-panel-art{object-fit:contain!important}
+  .bottom-bar{z-index:5!important;margin-top:-1%!important;background:none!important}
+  .bottom-bar .bottom-art{object-fit:contain!important}
+}
+/* Center 24x13 square tiles in the visible opening, ignoring transparent frame padding. */
+.map-area .map{left:calc(var(--composition-map-h) * .06)!important;top:50.5%!important;grid-template-columns:repeat(24,minmax(0,1fr))!important;grid-template-rows:repeat(13,minmax(0,1fr))!important;aspect-ratio:24/13!important}
+@media(max-width:800px){.map-area .map{left:3.5%!important;width:89%!important}}
+.map .tile.entry .terrain-decor,.map .tile.office .terrain-decor{display:none!important}
+.map .tile:nth-child(169),.map .tile:nth-child(191){z-index:5;overflow:visible}
+.map .tile:nth-child(169)::after,.map .tile:nth-child(191)::after{content:"";position:absolute;left:0;top:0;width:200%;height:200%;pointer-events:none;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:6}
+.map .tile:nth-child(169)::after{background-image:url('assets/tiles/tile_entrance(1).png')}
+.map .tile:nth-child(191)::after{background-image:url('assets/tiles/tile_office(1).png')}
+/* Keep resident HP visible, but place the meter above the sprite and tile. */
+.map .tile:has(>.unit){overflow:visible!important}
+.map .tile .hp{display:block!important;top:-8px!important;left:9%!important;right:9%!important;height:5px!important;border:1px solid #4c3b30;border-radius:4px;background:#d46b59;box-shadow:0 1px 2px #27170d66;pointer-events:none;z-index:8!important}
+.map .tile .hp i{border-radius:3px}

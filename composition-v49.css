@@ -1,0 +1,33 @@
+/* Keep image panels within the header/footer geometry without distortion. */
+@media (min-width:801px){
+  :root{
+    --composition-header-h:calc(100vw * 117 / 2048);
+    --composition-side-w:min(39vw,calc((100dvh - var(--composition-header-h)) * 1152 / 1552));
+    --composition-left-w:calc(100vw - var(--composition-side-w));
+    --composition-footer-h:calc(var(--composition-left-w) * 321 / 2048);
+    --composition-map-h:min(calc(100dvh - var(--composition-header-h) - var(--composition-footer-h)),calc(var(--composition-left-w) * 742 / 1235));
+    --composition-map-w:calc(var(--composition-map-h) * 1235 / 742);
+  }
+  .stage{height:100dvh!important;overflow:hidden!important}
+  .controls{grid-row:auto!important;grid-column:auto!important;top:var(--composition-header-h)!important;bottom:auto!important;right:0!important;left:auto!important;width:var(--composition-side-w)!important;height:calc(100dvh - var(--composition-header-h))!important;aspect-ratio:1152/1552!important;margin:0!important;transform:none!important;overflow:hidden!important;z-index:3!important}
+  .controls .side-panel-art{width:100%!important;height:100%!important;object-fit:fill!important}
+  .map-area{top:calc(var(--composition-header-h) + (100dvh - var(--composition-header-h) - var(--composition-footer-h) - var(--composition-map-h)) / 2)!important;left:calc((var(--composition-left-w) - var(--composition-map-w)) / 2)!important;width:var(--composition-map-w)!important;height:var(--composition-map-h)!important;margin:0!important;transform:none!important;overflow:hidden!important}
+  .map-area::after{inset:0!important;width:100%!important;height:100%!important;background-size:100% 100%!important}
+  .map-area .map{left:6%!important;top:50%!important;width:88%!important;height:auto!important;transform:translateY(-50%)!important;aspect-ratio:24/13!important}
+  .bottom-bar{left:0!important;bottom:0!important;width:var(--composition-left-w)!important;height:var(--composition-footer-h)!important;z-index:4!important}
+  .hud{z-index:2!important}
+}
+/* Original 1152 x 1552 artwork landmarks. */
+.controls .tabs{top:10.65%!important;height:6.95%!important}
+.controls .panel-heading{top:18.5%!important}
+.controls .panel-intro{top:22.7%!important}
+.controls .tools{top:27%!important;height:25.6%!important}
+.controls .panel-selection{top:53.6%!important;height:11.8%!important}
+.controls .route-toggle{top:23.6%!important}
+.controls .panel-forecast{top:79.2%!important;height:15.2%!important}
+/* 20x15 square-cell dungeon within the existing illustrated frame. */
+.map-area .map{left:13%!important;width:74%!important;aspect-ratio:20/15!important;grid-template-columns:repeat(20,minmax(0,1fr))!important;grid-template-rows:repeat(15,minmax(0,1fr))!important}
+.map .tile .unit img{object-fit:contain!important;max-height:100%!important;max-width:100%!important}
+.map .tile:has(.unit img[src*="enemy_gonda"]) .unit img,.map .tile:has(.unit img[src*="enemy_tachibana"]) .unit img{transform:scale(1.12);transform-origin:bottom center}
+.map .tile .statusicon{z-index:9;position:absolute;right:-3px;top:-5px;font-size:clamp(8px,.8vw,13px);background:#fff2ca;border-radius:50%;padding:1px 2px;pointer-events:none}
+.controls .panel-forecast .forecast-row{overflow-wrap:anywhere}

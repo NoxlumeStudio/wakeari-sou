@@ -1,0 +1,39 @@
+/* Artwork keeps its native ratio; the three independent regions occupy the viewport. */
+@media (min-width:801px){
+  :root{--header-h:clamp(78px,13dvh,145px)}
+  html,body{height:100%;overflow:hidden}
+  .app-shell{width:100vw;height:100dvh;max-width:none;margin:0;padding:0;box-sizing:border-box;overflow:hidden}
+  .stage{width:100%;height:100%;transform:none;display:grid;grid-template-columns:minmax(0,69.65fr) minmax(0,30.35fr);grid-template-rows:var(--header-h) minmax(0,1fr);gap:0;overflow:hidden}
+  .hud{position:relative;inset:auto;grid-row:1;grid-column:1/-1;width:100%;height:100%;background-image:url('assets/ui/ui_header.webp');background-size:cover;background-position:center center;gap:0;padding:0 3%;min-width:0}
+  .hud-title strong{font-size:clamp(16px,1.65vw,32px)}.hud-title small{font-size:clamp(9px,.9vw,16px)}
+  .hud-stage span{font-size:clamp(10px,1vw,18px)}.hud-stage small,.hud-phase small,.hud-progress small{font-size:clamp(9px,.8vw,14px)}
+  .hud-money span,.hud-phase b,.hud-progress strong{font-size:clamp(11px,1.1vw,20px)}
+  .map-area{position:relative;inset:auto;grid-row:2;grid-column:1;width:100%;height:100%;background-image:url('assets/ui/ui_map_frame.webp');background-size:cover;background-position:center;overflow:hidden;min-width:0;min-height:0}
+  .map-area::before{left:6.3%;top:6%;width:87.4%;height:88%;background-size:clamp(30px,3.2vw,65px)}
+  .map-area .map{left:50%;top:50%;transform:translate(-50%,-50%);width:min(88%,calc((100dvh - var(--header-h)) * 1.12));height:auto;max-height:86%;aspect-ratio:4/3;box-sizing:border-box;min-width:0}
+  .map-caption{left:7%;top:2.5%;width:86%;font-size:clamp(11px,.95vw,18px);display:flex;justify-content:space-between}
+  .tile{font-size:clamp(12px,1.45vw,28px)}
+  .controls{position:relative;inset:auto;grid-row:2;grid-column:2;width:100%;height:100%;padding:clamp(22px,3.4dvh,52px) clamp(20px,2.35vw,52px) clamp(18px,2.8dvh,43px);background-image:url('assets/ui/ui_side_panel.webp');background-size:cover;background-position:center;min-width:0;min-height:0;gap:clamp(5px,.8dvh,12px)}
+  .controls-inner{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;gap:clamp(6px,.9dvh,14px)}
+  .controls h2{font-size:clamp(16px,1.1vw,22px)}
+  .controls .tabs button{font-size:clamp(12px,.95vw,17px);min-height:clamp(38px,4.8dvh,55px)}
+  .controls .tools button{min-height:clamp(46px,6dvh,72px);font-size:clamp(12px,1vw,18px)}
+  .controls .tools button img{max-height:clamp(22px,2.6dvh,32px);max-width:32px}
+  .controls .hint,.controls .info-details{font-size:clamp(12px,.9vw,16px)}
+  .controls .moguru-guide{min-height:70px}
+  .controls .action-bar{flex:none;min-height:clamp(92px,11dvh,130px);padding-top:clamp(6px,1dvh,15px)}
+  .controls .action-buttons button{font-size:clamp(12px,.85vw,16px);min-height:clamp(42px,5.2dvh,62px)}
+}
+@media (max-width:800px){
+  html,body{width:100%;height:auto;overflow-x:hidden;overflow-y:auto}
+  .app-shell{width:100%;height:auto;margin:0;padding:0;overflow:visible}
+  .stage{width:100%;height:auto;transform:none;display:flex;flex-direction:column;gap:0;overflow:visible}
+  .hud{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:1774/145;background-size:contain;background-position:center;flex:none}
+  .map-area{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:1235/742;margin-top:-1.1vw;background-size:contain;background-position:center;flex:none}
+  .map-area .map{left:50%;top:50%;transform:translate(-50%,-50%);width:87%;height:auto;aspect-ratio:4/3;max-height:86%}
+  .map-caption{left:7%;top:4%;width:86%;display:flex;justify-content:space-between}
+  .controls{position:relative;inset:auto;width:100%;max-width:none;min-height:600px;height:auto;aspect-ratio:auto;margin-top:-2vw;padding:8% 8% 7%;background-size:100% auto;background-position:center top;background-repeat:no-repeat;background-color:#f7e6c9;flex:none}
+  .controls-inner{overflow:visible;max-height:none}
+  .controls .action-bar{min-height:90px}
+  .controls .action-buttons button{min-height:44px}
+}

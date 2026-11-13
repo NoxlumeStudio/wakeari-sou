@@ -1,0 +1,49 @@
+/* Align opaque artwork edges, not the transparent bounding rectangles. */
+.app-shell{height:calc(863px * var(--ui-scale))}
+.stage{height:863px}
+.map-area{top:121px}
+.controls{left:1192px;top:121px}
+
+/* The playable 4:3 grid stays independent and centered; fill unplayable margins with soil. */
+.map-area::before{content:"";position:absolute;left:7.4%;top:7.4%;width:87.4%;height:85%;background:#603f2d url('assets/tiles/tile_wall(1).png') repeat;background-size:54px 54px;opacity:.86;pointer-events:none;z-index:0}
+.map-area .map{z-index:1}
+.map-area .map{left:212px;top:63px;width:810px;height:607.5px}
+.map-area .map-caption{z-index:2}
+
+/* A single nine-slice artwork rule prevents the stretched/partial sprite artifact. */
+.controls .tools button,
+.controls .tools button:hover:not(:disabled),
+.controls .tools button.active,
+.controls .tools button.active:hover:not(:disabled),
+.controls .tools button:active:not(:disabled){
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  box-sizing:border-box;width:100%;min-height:60px;min-width:0;
+  border:12px solid transparent;border-radius:0;
+  border-image-source:url('assets/buttons/button_normal_a.png');
+  border-image-slice:82 fill;border-image-width:12px;border-image-outset:0;border-image-repeat:stretch;
+  background:none;background-image:none;background-color:transparent;
+  padding:3px 6px;overflow:hidden;isolation:isolate;
+  color:#4e3019;font-size:15px;font-weight:900;line-height:1.15;
+  box-shadow:none;text-align:center;
+}
+.controls .tools button.active{filter:brightness(1.08) saturate(1.18);box-shadow:inset 0 0 0 2px #a96a2d}
+.controls .tools button:active:not(:disabled){transform:translateY(2px);filter:brightness(.93)}
+.controls .tools button img{max-width:26px;max-height:26px;width:26px;height:26px;object-fit:contain;flex:none}
+.controls .tools button span{min-width:0;overflow-wrap:anywhere}
+.controls .tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.controls .tabs button{font-size:15px;min-height:45px}
+.controls .hint{font-size:13px}
+.controls .action-buttons button{font-size:14px}
+
+@media(max-width:800px){
+  .app-shell{height:auto}
+  .stage{height:auto;gap:0}
+  .map-area,.controls{top:auto;left:auto}
+  .map-area{margin-top:-1.1vw}
+  .controls{margin-top:-4.2vw;z-index:3}
+  .map-area::before{background-size:6vw 6vw}
+  .map-area .map{left:17.17%;top:8.5%;width:65.59%;height:auto;aspect-ratio:4/3}
+  .controls .tools button{min-height:54px;font-size:clamp(11px,3vw,15px)}
+  .controls .tabs button{font-size:clamp(11px,3vw,15px);min-height:40px}
+  .controls .action-buttons button{font-size:clamp(10px,2.9vw,14px)}
+}

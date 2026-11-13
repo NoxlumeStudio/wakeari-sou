@@ -1,0 +1,99 @@
+.story-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vh,24px);background:rgba(22,11,8,.91);overflow-y:auto;box-sizing:border-box}
+.story-overlay.hidden{display:none!important}
+.story-card{box-sizing:border-box;width:min(1080px,96vw);max-height:96dvh;display:flex;flex-direction:column;overflow:hidden;border:9px solid #704421;border-radius:26px;background:linear-gradient(#ffe6b7,#f4d4a1);box-shadow:0 0 0 3px #ca9751 inset,0 20px 70px #0008;color:#42261a}
+.story-header{text-align:center;padding:10px 22px;font-weight:900;font-size:clamp(22px,3.3vw,38px);background:linear-gradient(#c28a4b,#f2c47a);border-bottom:5px solid #704421;text-shadow:1px 2px #ffe8bd;flex:none}
+.story-art{flex:1 1 auto;min-height:90px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#c79861,#54321f);overflow:hidden}
+.story-still{display:block;width:100%;height:100%;max-height:49dvh;object-fit:contain;object-position:center}
+.story-no-image{min-height:12dvh;max-height:20dvh;background:radial-gradient(ellipse at center,#c69b65,#74472b);position:relative}
+.story-no-image:after{content:'地下のわけあり荘';color:#fbe5bc;font-weight:800;letter-spacing:.15em;font-size:clamp(18px,3vw,30px)}
+.story-no-image:has(img):after{display:none}
+.story-dialogue{padding:clamp(10px,1.6vh,20px) clamp(15px,3vw,30px);overflow-y:auto;flex:0 1 auto;font-size:clamp(13px,1.7vw,19px);line-height:1.45;background:linear-gradient(#fff4d9,#f6dfb7);min-height:0}
+.story-dialogue p{margin:0 0 .3em}
+.story-note{font-weight:800;color:#8d3b24;margin-top:.5em;border-top:1px solid #cba876;padding-top:.5em}
+.story-controls{display:flex;justify-content:center;gap:12px;padding:10px;background:#eac28c;flex:none}
+.story-primary,.story-archive-list button{cursor:pointer;border:2px solid #7d3e1f;border-radius:12px;background:linear-gradient(#fff5cc,#e8a85e);padding:10px 28px;font-family:inherit;font-weight:800;font-size:clamp(16px,2vw,22px);color:#512811}
+.story-primary:hover,.story-archive-list button:hover:not(:disabled){filter:brightness(1.07)}
+.story-primary:focus-visible,.story-archive-list button:focus-visible{outline:4px solid #ffb128}
+.story-archive-help{font-size:clamp(13px,1.7vw,18px);padding:0 20px;margin:12px 0;text-align:center}
+.story-archive-list{padding:12px;overflow-y:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-height:0;flex:1 1 auto}
+.story-archive-list button{text-align:left;font-size:clamp(12px,1.4vw,17px);padding:9px}
+.story-archive-list button:disabled{opacity:.45;cursor:not-allowed}
+#storyReplay{position:absolute;top:18.2%;right:25%;z-index:5;display:block!important;font-size:clamp(10px,.85vw,13px);font-weight:800;white-space:nowrap;background:#f9e0ae;border:1px solid #ac7945;border-radius:12px;color:#674122;padding:4px 8px;cursor:pointer}
+@media(max-width:680px){.story-overlay{padding:5px}.story-card{width:100%;max-height:99dvh;border-width:5px;border-radius:14px}.story-header{padding:8px}.story-still{max-height:36dvh}.story-art{min-height:60px}.story-dialogue{font-size:clamp(12px,3.1vw,16px);line-height:1.4}.story-controls{padding:7px}.story-primary{padding:9px 20px}.story-archive-list{grid-template-columns:1fr}}
+
+/* Full-frame visual novel scenes. The archive list retains its own layout. */
+.story-overlay:has(.story-scene){padding:clamp(4px,1vh,12px);overflow:hidden}
+.story-card.story-scene{position:relative;display:block;width:min(98vw,calc(95dvh * 16 / 9));height:min(95dvh,calc(98vw * 9 / 16));max-height:none;aspect-ratio:16/9;flex:none;border:clamp(4px,.65vw,9px) solid #704421;isolation:isolate}
+.story-scene .story-art{position:absolute;inset:0;min-height:0;display:block;overflow:hidden;background:radial-gradient(ellipse,#bd8a55,#54321f)}
+.story-scene .story-still{width:100%;height:100%;max-height:none;object-fit:cover;object-position:center center}
+.story-scene .story-header{position:absolute;z-index:2;top:clamp(7px,1.5vh,18px);left:clamp(8px,2vw,26px);right:auto;max-width:calc(100% - 32px);padding:clamp(4px,.65vh,9px) clamp(12px,1.6vw,24px);border:2px solid #ebc184;border-radius:12px;background:rgba(58,29,18,.83);color:#fff4d9;text-shadow:0 2px 3px #160c08;font-size:clamp(15px,min(2.1vw,3.3vh),30px);line-height:1.22;text-align:left;box-shadow:0 3px 12px #150b0777}
+.story-scene .story-dialogue{position:absolute;z-index:2;left:0;right:0;bottom:0;height:30%;min-height:0;padding:clamp(9px,1.5vh,20px) clamp(14px,2.5vw,36px) clamp(36px,5.7vh,61px);overflow:hidden;border-top:2px solid #f1d1a4;background:linear-gradient(180deg,rgba(35,18,15,.78),rgba(29,16,13,.9));color:#fff7e9;font-size:clamp(12px,min(1.4vw,2.4vh),20px);line-height:1.38;text-shadow:0 1px 2px #110b08}
+.story-scene .story-dialogue p{margin:0 0 .14em}
+.story-scene .story-note{display:inline-block;margin-top:.16em;padding-top:.18em;border-color:#e4c1988c;color:#ffd997;font-size:.92em}
+.story-scene .story-controls{position:absolute;z-index:3;right:clamp(12px,2vw,28px);bottom:clamp(8px,1.3vh,16px);display:block;padding:0;background:none}
+.story-scene .story-primary{min-height:32px;padding:clamp(5px,.7vh,9px) clamp(16px,2vw,28px);font-size:clamp(12px,min(1.35vw,2.25vh),19px);box-shadow:0 2px 10px #120804a8}
+.story-scene.story-ending .story-dialogue{height:53%;font-size:clamp(11px,min(1.25vw,2vh),17px);line-height:1.2;padding-top:clamp(5px,.75vh,10px);padding-bottom:clamp(31px,5vh,52px)}
+.story-scene.story-ending .story-dialogue p{margin-bottom:.06em}
+.story-scene .story-no-image{max-height:none}
+.story-scene .story-no-image:after{position:absolute;top:35%;left:0;right:0;text-align:center}
+@media(max-height:480px) and (orientation:landscape){.story-card.story-scene{border-width:4px}.story-scene .story-header{top:5px;padding:3px 10px;font-size:clamp(13px,2.9vh,18px)}.story-scene .story-dialogue{height:37%;font-size:clamp(11px,2.7vh,14px);line-height:1.17;padding:5px 12px 30px}.story-scene .story-dialogue p{margin-bottom:0}.story-scene .story-note{margin-top:0;padding-top:0}.story-scene .story-primary{padding:3px 13px;min-height:26px;font-size:12px}.story-scene .story-controls{bottom:5px;right:9px}.story-scene.story-ending .story-dialogue{height:61%;font-size:clamp(10px,2.3vh,12px);line-height:1.06;padding-bottom:27px}}
+@media(orientation:portrait) and (max-width:680px){.story-card.story-scene{width:98vw;height:min(89dvh,calc(98vw * 1.13));aspect-ratio:auto}.story-scene .story-still{object-fit:cover;object-position:center}.story-scene .story-dialogue{height:45%;font-size:clamp(12px,3.3vw,16px);padding-bottom:43px}.story-scene.story-ending .story-dialogue{height:67%;font-size:clamp(10px,2.75vw,14px)}.story-scene .story-header{font-size:clamp(14px,4vw,20px)}}
+
+/* Event CG presentation: no outer wood rim; give the full viewport to art. */
+.story-overlay:has(.story-scene){padding:0}
+.story-card.story-scene{width:min(100vw,calc(100dvh * 16 / 9));height:min(100dvh,calc(100vw * 9 / 16));border:0;border-radius:0;box-shadow:none;overflow:hidden}
+.story-scene .story-dialogue{height:23%;padding-top:clamp(6px,.9vh,12px);padding-bottom:clamp(34px,5.1vh,54px);font-size:clamp(12px,min(1.3vw,2.2vh),19px);line-height:1.28;border-top:1px solid #f1d1a4aa}
+.story-scene.story-with-note .story-dialogue{height:27%}
+.story-scene.story-ending .story-dialogue{height:53%;font-size:clamp(11px,min(1.25vw,2vh),17px);line-height:1.2}
+@media(max-height:480px) and (orientation:landscape){.story-scene .story-dialogue{height:35%;font-size:clamp(11px,2.7vh,14px);line-height:1.14;padding:5px 12px 29px}.story-scene.story-with-note .story-dialogue{height:40%}.story-scene.story-ending .story-dialogue{height:63%;font-size:clamp(10px,2.3vh,12px);line-height:1.06;padding-bottom:27px}}
+@media(orientation:portrait) and (max-width:680px){.story-card.story-scene{width:100vw;height:min(100dvh,calc(100vw * 1.13))}.story-scene .story-dialogue{height:45%;font-size:clamp(12px,3.3vw,16px);line-height:1.38;padding-bottom:43px}.story-scene.story-with-note .story-dialogue{height:52%}.story-scene.story-ending .story-dialogue{height:70%;font-size:clamp(10px,2.75vw,14px);line-height:1.17}}
+
+/* Edge-to-edge CG: never size the scene itself to the 16:9 source artwork. */
+.story-overlay:has(.story-scene){inset:0;padding:0;overflow:hidden}
+.story-card.story-scene{width:100vw;height:100dvh;max-width:none;max-height:none;aspect-ratio:auto;margin:0;flex:none;border:0;border-radius:0;box-shadow:none}
+.story-scene .story-still{width:100%;height:100%;object-fit:cover;object-position:center center}
+.story-scene .story-dialogue{height:18%;padding:clamp(5px,.7vh,9px) clamp(12px,2.4vw,32px) clamp(29px,4.5vh,46px);font-size:clamp(12px,min(1.25vw,2vh),18px);line-height:1.2}
+.story-scene.story-with-note .story-dialogue{height:21%}
+.story-scene.story-ending .story-dialogue{height:44%;font-size:clamp(11px,min(1.2vw,1.9vh),16px);line-height:1.15}
+.story-scene .story-controls{bottom:clamp(6px,1vh,12px)}
+@media(max-height:500px) and (orientation:landscape){.story-scene .story-dialogue{height:26%;font-size:clamp(11px,2.65vh,14px);line-height:1.12;padding:4px 12px 26px}.story-scene.story-with-note .story-dialogue{height:32%}.story-scene.story-ending .story-dialogue{height:61%;font-size:clamp(10px,2.3vh,12px);line-height:1.05;padding-bottom:25px}}
+@media(orientation:portrait) and (max-width:680px){.story-card.story-scene{width:100vw;height:100dvh}.story-scene .story-dialogue{height:32%;font-size:clamp(12px,3.2vw,16px);line-height:1.27;padding-bottom:44px}.story-scene.story-with-note .story-dialogue{height:39%}.story-scene.story-ending .story-dialogue{height:70%;font-size:clamp(10px,2.75vw,14px);line-height:1.17}}
+
+/* Keep the overlay physically thin even after expanding the CG to viewport height. */
+.story-scene .story-dialogue{height:15%;font-size:clamp(12px,min(1.12vw,1.8vh),16px);line-height:1.12;padding-top:clamp(4px,.5vh,7px);padding-bottom:clamp(30px,4vh,40px)}
+.story-scene.story-with-note .story-dialogue{height:17%}
+.story-scene.story-ending .story-dialogue{height:40%;font-size:clamp(11px,min(1.16vw,1.85vh),16px);line-height:1.13}
+@media(max-height:500px) and (orientation:landscape){.story-scene .story-dialogue{height:25%;font-size:clamp(11px,2.65vh,14px);line-height:1.1;padding:3px 12px 25px}.story-scene.story-with-note .story-dialogue{height:30%}.story-scene.story-ending .story-dialogue{height:61%;font-size:clamp(10px,2.3vh,12px);line-height:1.05}}
+@media(orientation:portrait) and (max-width:680px){.story-scene .story-dialogue{height:32%;font-size:clamp(12px,3.2vw,16px);line-height:1.27;padding-bottom:44px}.story-scene.story-with-note .story-dialogue{height:39%}.story-scene.story-ending .story-dialogue{height:70%;font-size:clamp(10px,2.75vw,14px);line-height:1.17}}
+
+/* Restored cute, inset CG composition, without the marked frame and separators. */
+.story-overlay:has(.story-scene){padding:clamp(4px,1vh,12px)}
+.story-card.story-scene{width:min(98vw,calc(94dvh * 16 / 9));height:min(94dvh,calc(98vw * 9 / 16));aspect-ratio:16/9;border:0;border-radius:clamp(12px,1.8vw,22px);box-shadow:none;overflow:hidden}
+.story-scene .story-dialogue{height:16%;padding:clamp(5px,.7vh,9px) clamp(12px,2.4vw,32px) clamp(5px,.8vh,10px);font-size:clamp(12px,min(1.2vw,2vh),18px);line-height:1.2;border-top:0;overflow:hidden}
+.story-scene.story-with-note .story-dialogue{height:20%}
+.story-scene.story-ending .story-dialogue{height:44%;font-size:clamp(11px,min(1.2vw,1.9vh),16px);line-height:1.13}
+.story-scene .story-note{border:0;padding-top:0;margin-top:.12em}
+.story-scene .story-controls{bottom:clamp(18px,3.3vh,35px);right:clamp(13px,2vw,29px)}
+@media(max-height:500px) and (orientation:landscape){.story-scene .story-dialogue{height:34%;font-size:clamp(11px,2.7vh,14px);line-height:1.12;padding:4px 12px 4px}.story-scene.story-with-note .story-dialogue{height:40%}.story-scene.story-ending .story-dialogue{height:63%;font-size:clamp(10px,2.3vh,12px);line-height:1.05}.story-scene .story-controls{bottom:9px}}
+@media(orientation:portrait) and (max-width:680px){.story-card.story-scene{width:98vw;height:min(90dvh,calc(98vw * 1.13));aspect-ratio:auto}.story-scene .story-dialogue{height:40%;font-size:clamp(12px,3.2vw,16px);line-height:1.25}.story-scene.story-with-note .story-dialogue{height:48%}.story-scene.story-ending .story-dialogue{height:72%;font-size:clamp(10px,2.75vw,14px);line-height:1.14}.story-scene .story-controls{bottom:10px}}
+
+/* A gentle caramel outline frames the rounded CG, with a little more room for dialogue. */
+.story-card.story-scene{border:2px solid rgba(180,119,65,.68);border-radius:clamp(12px,1.8vw,22px);box-shadow:0 4px 14px rgba(40,20,9,.18)}
+.story-scene .story-dialogue{height:19%;font-size:clamp(13px,min(1.35vw,2.2vh),20px);line-height:1.24}
+.story-scene.story-with-note .story-dialogue{height:23%}
+.story-scene.story-ending .story-dialogue{height:47%;font-size:clamp(12px,min(1.32vw,2vh),18px);line-height:1.17}
+.story-scene .story-primary{border-width:1px;box-shadow:0 2px 7px rgba(18,8,4,.35)}
+@media(max-height:500px) and (orientation:landscape){.story-scene .story-dialogue{height:38%;font-size:clamp(12px,2.85vh,15px);line-height:1.14}.story-scene.story-with-note .story-dialogue{height:44%}.story-scene.story-ending .story-dialogue{height:66%;font-size:clamp(11px,2.4vh,13px)}}
+@media(orientation:portrait) and (max-width:680px){.story-scene .story-dialogue{height:43%;font-size:clamp(13px,3.4vw,17px);line-height:1.27}.story-scene.story-with-note .story-dialogue{height:51%}.story-scene.story-ending .story-dialogue{height:75%;font-size:clamp(11px,2.9vw,15px);line-height:1.16}}
+
+/* Keep story playback itself intact, but remove the unwanted in-game replay control. */
+#storyReplay{display:none!important}
+
+/* Give narration equal breathing room above and below without changing the frame. */
+.story-scene .story-dialogue{
+  display:flex;
+  flex-direction:column;
+  justify-content:safe center;
+  padding-top:clamp(10px,1.2vh,16px);
+  padding-bottom:clamp(10px,1.2vh,16px);
+}

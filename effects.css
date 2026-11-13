@@ -1,0 +1,14 @@
+/* Map art overlays: independent of gameplay hit testing and world geometry. */
+.tile .map-equipment{position:absolute;inset:8%;width:84%;height:84%;display:grid;place-items:center;z-index:3;pointer-events:none;transition:none}
+.tile .map-equipment img{display:block;width:100%;height:100%;object-fit:contain;aspect-ratio:1}
+.tile .map-equipment.cooling{opacity:.42;filter:saturate(.65)}
+.tile .map-equipment.pulsing{filter:brightness(1.35) drop-shadow(0 0 5px #ffcc52);transform:rotate(calc((1 - var(--pulse))*8deg)) scale(1.07)}
+.tile .unit{z-index:6}
+.tile .hp,.tile .statusicon,.tile .many{z-index:12}
+.tile .map-effect,.tile .sleep-effect{position:absolute;pointer-events:none;display:grid;place-items:center;z-index:10}
+.tile .map-effect img,.tile .sleep-effect img{display:block;width:100%;height:100%;object-fit:contain;aspect-ratio:1}
+.tile .combat-effect{inset:-18%;opacity:var(--effect-opacity);transform:scale(var(--effect-scale));transform-origin:center}
+.tile .alert-effect{inset:-34% -26% 35% 35%;z-index:11}
+.tile .sleep-effect{width:58%;height:58%;top:-13%;right:-14%;transform:translateY(var(--float));z-index:11}
+.tile .dig-effect{inset:-15%;animation:dig-cloud .35s ease-out both}
+@keyframes dig-cloud{from{opacity:.92;transform:scale(.45)}to{opacity:0;transform:scale(1.2)}}

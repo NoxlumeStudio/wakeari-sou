@@ -1,0 +1,60 @@
+/* All interactive coordinates are percentages of the 1152 x 1552 source image. */
+@media(min-width:801px){
+  .stage{grid-template-columns:minmax(0,66fr) minmax(0,34fr)}
+  .controls{padding:0!important;margin-left:0!important;overflow:hidden!important}
+}
+.controls{position:relative!important;isolation:isolate;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;container-type:inline-size;}
+.controls .side-panel-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;z-index:0;display:block}
+.controls .controls-inner{position:absolute;inset:0;display:block!important;width:100%;height:100%;padding:0!important;overflow:hidden!important;z-index:1;scrollbar-width:none}
+.controls .controls-inner>div[hidden]{display:none!important}
+.controls .tabs{position:absolute;top:10.65%;left:4.3%;width:91.8%;height:6.95%;display:grid!important;grid-template-columns:repeat(3,1fr);gap:0!important;margin:0;padding:0;z-index:3}
+.controls .tabs button{display:block;min-height:0!important;height:100%;width:100%;border:0!important;background:transparent!important;border-radius:13px!important;padding:0!important;font-size:0!important;box-shadow:none!important;opacity:1;outline-offset:-4px}
+.controls .tabs button.active{box-shadow:inset 0 0 0 3px #ee9a2db8!important;background:#ff9a2629!important;filter:none}
+.controls .tabs button:hover:not(:disabled){background:#fff2a52b!important}
+.controls .tabs button:focus-visible{outline:3px solid #338a64}
+.controls .panel-heading{position:absolute;left:8%;top:18.5%;width:84%;height:3.4%;display:flex;align-items:center;padding:0 1.5%;background:transparent;color:#432213;font-size:clamp(14px,4cqw,22px);line-height:1.25;font-weight:900;white-space:nowrap;overflow:hidden}
+.controls .panel-intro{position:absolute;left:8%;top:22.7%;width:84%;height:3.5%;display:flex;align-items:center;justify-content:flex-start;padding:0 1.5%;color:#5d361c;font-weight:750;font-size:clamp(11px,2.9cqw,17px);line-height:1.4;text-align:left;overflow:hidden}
+.controls[data-panel-tab="home"] .panel-intro{white-space:nowrap}
+.controls .tools{position:absolute;left:6.3%;top:27%;width:87.4%;height:25.6%;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:2.5% 3%!important;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;align-content:start;padding:0 1% 1%;}
+.controls[data-panel-tab="dig"] .tools{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:1%!important;padding:0!important}
+.controls[data-panel-tab="trap"] .tools{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:1%!important;padding:0!important}
+.controls .route-toggle{display:none;position:absolute;right:7%;top:23.6%;height:3.3%;min-height:0;padding:0 8px;border:1px solid #b88e59;border-radius:10px;background:#fff0d6d9;color:#623c20;font-size:clamp(9px,2.3cqw,14px);font-weight:900;z-index:6}
+.controls[data-panel-tab="dig"] .panel-intro{width:65%}
+.controls[data-panel-tab="dig"] .route-toggle{display:block}
+.controls .route-toggle[aria-pressed="true"]{background:#ffdb93;border-color:#d18c2c}
+.controls[data-panel-tab="home"] .tools{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1.5% 1%!important;padding:0!important}
+.controls[data-panel-tab="home"] .tools button{font-size:clamp(9px,2.7cqw,16px)}
+.controls .tools button,.controls .tools button:hover:not(:disabled),.controls .tools button.active,.controls .tools button:active:not(:disabled){min-width:0;width:100%;height:100%;min-height:0!important;max-height:none;background:transparent url('assets/buttons/button_normal_a.png') center / 100% 100% no-repeat!important;border:0!important;border-radius:9px!important;box-shadow:none!important;color:#492b17!important;display:flex;align-items:center;justify-content:center;gap:1%;padding:0 2%!important;font-weight:900;font-size:clamp(10px,3cqw,17px);line-height:1.1;text-shadow:0 1px #fff4d2;overflow:hidden}
+.controls .tools button img{width:27%;height:82%;max-width:none;max-height:none;object-fit:contain;flex:none}
+.controls .tools button.icon-only{padding:1%!important}
+.controls .tools button.icon-only,.controls .tools button.icon-only:hover:not(:disabled),.controls .tools button.icon-only:active:not(:disabled),.controls .tools button.icon-only.active{background:none!important;border:0!important;border-radius:15px!important;box-shadow:none!important}
+.controls .tools button.icon-only.active{outline:3px solid #dc8536!important;outline-offset:-4px;background:#fff5d55c!important}
+.controls .tools button.icon-only img{width:88%;height:88%;max-width:100%;max-height:100%;object-fit:contain;transform:none}
+.controls[data-panel-tab="home"] .tools button.icon-only img{width:90%;height:90%;transform:scale(1.08);transform-origin:center}
+.controls[data-panel-tab="home"] .tools button[data-mode="dos"] img{width:100%;height:100%;transform:scale(1.03);object-fit:contain}
+.controls[data-panel-tab="trap"] .tools button.icon-only img{width:93%;height:93%}
+.controls .tools button.icon-only.coming-soon{display:flex;flex-direction:column;gap:0;background:#fff0cf65!important;opacity:1!important;border:2px dashed #cba575!important;border-radius:14px!important;cursor:default;color:#8c6a4a!important}
+.controls .tools .soon-symbol{font-size:clamp(28px,9cqw,57px);font-weight:900;line-height:1;opacity:.63}
+.controls .tools .soon-label{font-size:clamp(7px,1.65cqw,11px);letter-spacing:.02em;font-weight:900;white-space:nowrap}
+.controls .tools button.icon-only .tool-emoji{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:clamp(28px,12cqw,67px);line-height:1}
+.controls .tools button span{min-width:0;white-space:normal;overflow-wrap:normal}
+.controls .tools button small{font-size:.82em;white-space:nowrap}
+.controls .tools button.active{outline:3px solid #d57923;outline-offset:-4px;filter:brightness(1.05)}
+.controls .tools button:active:not(:disabled){transform:translateY(2px);filter:brightness(.93)}
+.controls .tools button:focus-visible{outline:3px solid #3b9771}
+.controls .panel-selection{position:absolute;top:53.6%;left:6.1%;width:87.8%;height:11.8%;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:2% 2.5%;overflow:hidden;color:#58351f;background:#fffdf1f5;border:1px solid #dcb78b;border-radius:13px;box-shadow:0 1px 5px #75482524;z-index:8!important}
+.controls .selected-tool-title{font-size:clamp(12px,3cqw,17px);font-weight:900;line-height:1.3}
+.controls .hint{display:block!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;color:#68462b!important;font-size:clamp(10px,2.6cqw,14px);line-height:1.4;overflow:hidden;max-height:57%}
+.controls .inspect-more{display:none;position:absolute;top:6%;right:2%;font-size:clamp(8px,2cqw,12px);padding:2px 7px;border-radius:6px;background:#ffe2a7d9;border:1px solid #bd9b6c;color:#5b381f}
+.controls[data-panel-tab="home"] .inspect-more{display:block}
+.controls[data-panel-tab="home"] .selected-tool-title{max-width:77%}
+.controls .panel-forecast{position:absolute;top:73.1%;left:49.6%;width:42.9%;height:20.4%;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:2%;pointer-events:none}
+.controls .forecast-row{display:flex;align-items:center;padding-left:21%;padding-right:3%;font-size:clamp(9px,2.7cqw,16px);line-height:1.25;font-weight:850;color:#4b2b27;overflow:hidden;overflow-wrap:anywhere}
+.controls .battle-record{position:absolute;bottom:-11%;right:0;pointer-events:auto;background:#fff4d1e8;color:#5d2749;border:1px solid #a6659b;border-radius:10px;padding:2px 7px;font-size:clamp(9px,2.5cqw,14px)}
+.controls .battle-record:hover{background:#fff0b8}
+@media(max-width:800px){
+  .controls{width:min(100%,540px)!important;max-width:540px!important;aspect-ratio:1152/1552!important;height:auto!important;min-height:0!important;margin:0 auto!important;flex:none!important;align-self:center}
+  .controls .side-panel-art{object-fit:contain}
+  .controls .tools{grid-template-rows:repeat(2,minmax(0,1fr))}
+  .controls .tools button{font-size:clamp(11px,3.2cqw,19px)!important}
+}

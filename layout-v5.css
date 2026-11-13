@@ -1,0 +1,62 @@
+/* Three native-size artwork pieces share one coordinate system: 1774×887. */
+:root{--ui-scale:1}
+html,body{width:100%;margin:0;overflow-x:hidden}
+body{min-height:100vh;background:#30281e radial-gradient(circle at center,#53412d,#251f1a)}
+.app-shell{box-sizing:content-box;width:calc(1774px * var(--ui-scale));height:calc(887px * var(--ui-scale));max-width:none;padding:0;margin:auto;position:relative}
+.stage{width:1774px;height:887px;aspect-ratio:auto;position:relative;display:block;transform:scale(var(--ui-scale));transform-origin:top left;background:none;overflow:visible}
+.hud{position:absolute;left:0;top:0;width:1774px;height:145px;display:grid;grid-template-columns:23% 25% 17% 12% 23%;padding:0 3%;background:url('assets/ui/ui_header.webp') 0 0/1774px 145px no-repeat;border:0;border-radius:0;box-shadow:none;z-index:2}
+.hud-title strong{font-size:28px}.hud-title small{font-size:14px}.hud-stage span{font-size:17px}.hud-stage small,.hud-phase small,.hud-progress small{font-size:13px}.hud-money span,.hud-phase b{font-size:18px}.hud-money img{width:30px}.hud-progress strong{font-size:18px}
+.map-area{position:absolute;left:0;top:145px;width:1235px;height:742px;aspect-ratio:auto;padding:0;border:0;border-radius:0;background:url('assets/ui/ui_map_frame.webp') 0 0/1235px 742px no-repeat;display:block;overflow:hidden}
+.map-caption{position:absolute;left:207px;top:38px;width:820px;padding:0;line-height:1.2;font-size:13px;z-index:2;pointer-events:none}
+.map{position:absolute;left:207px;top:67px;width:820px;height:615px;max-width:none;aspect-ratio:4/3;border:2px solid #483624;border-radius:3px;box-sizing:border-box;display:grid;grid-template-columns:repeat(20,minmax(0,1fr));overflow:hidden}
+.tile{font-size:23px}
+.controls{position:absolute;left:1235px;top:145px;width:539px;height:742px;box-sizing:border-box;margin:0;padding:43px 47px 42px;background:url('assets/ui/ui_side_panel.webp') 0 0/539px 742px no-repeat;border:0;border-radius:0;box-shadow:none;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.controls-inner{display:flex;flex-direction:column;gap:7px;min-height:0;flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;padding:0 2px}
+.controls h2{font-size:19px}.controls .help-button{font-size:12px!important}.tabs button{font-size:13px;padding:9px 4px}.tools button{font-size:13px;min-height:47px}.tools button img{width:24px;height:24px}.hint{font-size:12px}.info-details{font-size:13px}.info-details #forecast{font-size:12px}.moguru-guide b{font-size:12px}.moguru-guide span{font-size:13px}
+.action-bar{position:relative;bottom:auto;left:auto;width:100%;height:auto;min-height:94px;box-sizing:border-box;flex:none;margin:0;padding:7px 4px 2px;transform:none;background:none;border:0;border-top:1px solid #d9b98b;border-radius:0;box-shadow:none;display:flex;flex-direction:column;gap:5px;align-items:stretch;justify-content:flex-end}
+.action-bar #toast{font-size:11px;text-align:center;max-height:30px;overflow:hidden}.action-buttons{display:grid;grid-template-columns:1.7fr 1fr .8fr;gap:4px;width:100%}.action-buttons button{min-width:0;white-space:normal;font-size:12px;padding:8px 5px;line-height:1.15}.action-buttons button img{width:15px;height:15px}
+@media(max-width:800px){
+  .app-shell{width:100%;height:auto;padding:0;margin:0;box-sizing:border-box}
+  .stage{position:relative;transform:none;width:100%;height:auto;display:flex;flex-direction:column;gap:0;overflow:visible}
+  .hud,.map-area,.controls{position:relative;left:auto;top:auto;width:100%;height:auto;margin:0;box-sizing:border-box;border:0;border-radius:0;flex:none}
+  .hud{min-height:0;aspect-ratio:1774/145;display:grid;grid-template-columns:23% 25% 17% 12% 23%;padding:0 3%;background:url('assets/ui/ui_header.webp') center/100% 100% no-repeat}
+  .hud .hud-phase{display:flex}.hud-title strong{font-size:clamp(9px,2.1vw,17px)}.hud-title small{font-size:clamp(6px,1.3vw,11px)}.hud-stage span{font-size:clamp(7px,1.7vw,12px)}.hud-stage small,.hud-phase small,.hud-progress small{font-size:clamp(6px,1.2vw,10px)}.hud-money img{width:clamp(12px,2.5vw,23px)}.hud-money span,.hud-phase b,.hud-progress strong{font-size:clamp(7px,1.6vw,12px)}.progress-track{height:3px}
+  .map-area{aspect-ratio:1235/742;background:url('assets/ui/ui_map_frame.webp') center/100% 100% no-repeat;overflow:hidden;padding:0}
+  .map-caption{position:absolute;left:16.76%;top:4.9%;width:66.4%;font-size:clamp(8px,1.6vw,12px);padding:0}
+  .map{left:16.76%;top:9.03%;width:66.4%;height:auto;aspect-ratio:4/3;border-width:1px}
+  .tile{font-size:clamp(7px,2.2vw,16px)}
+  .controls{aspect-ratio:539/742;width:100%;max-width:539px;align-self:center;padding:8% 8% 7%;background:url('assets/ui/ui_side_panel.webp') center/100% 100% no-repeat;gap:4px;overflow:hidden}
+  .controls-inner{min-height:0;gap:5px}.controls h2{font-size:clamp(13px,3.5vw,19px)}.tabs button{font-size:clamp(10px,2.7vw,13px);padding:7px 3px}.tools{grid-template-columns:repeat(2,minmax(0,1fr))}.tools button{min-height:43px;font-size:clamp(11px,2.8vw,13px)}.hint{font-size:11px}.info-details{font-size:12px}
+  .action-bar{position:relative;bottom:auto;min-height:75px;padding:3px 1px}.action-bar #toast{display:block;font-size:10px}.action-buttons button{font-size:clamp(10px,2.6vw,12px);padding:8px 3px}
+}
+@media(max-width:380px){.controls{aspect-ratio:auto;min-height:540px}.controls-inner{max-height:445px}.map-caption{font-size:8px}.hud-stage span{display:none}}
+
+/* Unified tool-button states. Avoid stacked legacy background shorthands and image swapping on press. */
+.controls .tools button,
+.controls .tools button:hover:not(:disabled),
+.controls .tools button.active,
+.controls .tools button:active:not(:disabled){
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background-color:#f1dbb4;
+  background-image:url('assets/buttons/button_normal_a.png');
+  background-position:center;
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border:0;
+  border-radius:10px;
+  color:#4e3019;
+  box-shadow:none;
+  transition:transform .09s ease,filter .09s ease,box-shadow .09s ease;
+}
+.controls .tools button.active{filter:brightness(1.08) saturate(1.15);box-shadow:inset 0 0 0 3px #bf7a2f}
+.controls .tools button:hover:not(:disabled){filter:brightness(1.06)}
+.controls .tools button.active:hover:not(:disabled){filter:brightness(1.12)}
+.controls .tools button:active:not(:disabled){transform:translateY(2px);filter:brightness(.91);box-shadow:inset 0 2px 5px #6d421f70}
+.controls .tools button:focus{outline:none}
+.controls .tools button:focus-visible{outline:3px solid #5c8c64;outline-offset:2px}
+.controls .tools button img{display:block;flex:none;max-width:24px;max-height:24px;object-fit:contain}
+.controls .tools button span{position:relative;z-index:1}
+.controls button{overflow:hidden;isolation:isolate}
+.controls .tabs button:active:not(:disabled),.controls .action-buttons button:active:not(:disabled){transform:translateY(1px);filter:brightness(.94)}

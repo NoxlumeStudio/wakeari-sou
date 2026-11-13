@@ -1,0 +1,185 @@
+/* Single layout authority: artwork edges meet on all four sides. */
+@media (min-width:801px){
+  :root{
+    --composition-header-h:calc(100vw * 117 / 2048);
+    --composition-side-w:min(39vw,calc((100dvh - var(--composition-header-h)) * 1152 / 1552));
+    --composition-left-w:calc(100vw - var(--composition-side-w));
+    --composition-footer-h:calc(var(--composition-left-w) * 0.125);
+    --composition-map-h:calc(100dvh - var(--composition-header-h) - var(--composition-footer-h));
+    --composition-map-drop:clamp(25px,2.35vw,42px);
+  }
+  .map-area{
+    position:absolute!important;grid-area:auto!important;
+    top:var(--composition-header-h)!important;left:0!important;
+    width:var(--composition-left-w)!important;height:calc(var(--composition-map-h) + var(--composition-map-drop))!important;
+    overflow:visible!important;transform:none!important;margin:0!important;
+  }
+  .map-area::after{inset:0!important;width:100%!important;height:100%!important;background-size:100% 100%!important}
+  .map-area .map{
+    left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;
+    /* The illustrated frame has a narrow border, not a wide unused gutter. */
+    width:min(97%,calc((var(--composition-map-h) + var(--composition-map-drop)) * 1.62))!important;
+    height:auto!important;max-height:97%!important;
+    aspect-ratio:20/12!important;
+    grid-template-columns:repeat(20,minmax(0,1fr))!important;
+    grid-template-rows:repeat(12,minmax(0,1fr))!important;
+  }
+  .map-area .map-caption{display:none!important}
+  .controls{grid-area:auto!important;top:var(--composition-header-h)!important;bottom:0!important;left:auto!important;right:0!important;margin:0!important}
+  .bottom-bar{grid-area:auto!important;left:0!important;bottom:0!important;margin:0!important;z-index:32!important}
+  .bottom-bar .bottom-art{width:100%!important;height:100%!important;object-fit:fill!important;object-position:center!important}
+  .bottom-bar{background-size:100% 100%!important}
+  /* Anchor Moguru's line inside the parchment speech area of the footer art. */
+  .bottom-bar .bottom-guide{top:18%!important;height:64%!important}
+  .bottom-bar .bottom-guide .dialogue-box{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;padding:2% 5%!important;min-height:0!important;max-width:none!important;display:flex!important;align-items:center!important;justify-content:center!important}
+  .bottom-bar .bottom-guide .dialogue-box span{display:block!important;width:100%!important;max-height:100%!important;text-align:center!important;font-size:clamp(11px,1vw,18px)!important;line-height:1.25!important;overflow-wrap:anywhere!important}
+  /* Compact controls live in the illustrated top border, outside the tile grid. */
+  .map-area .bottom-actions{
+    left:5.2%!important;top:5px!important;
+    width:min(294px,42%)!important;height:24px!important;
+    grid-template-columns:1.25fr .8fr .8fr!important;gap:3px!important;
+    display:none!important;
+  }
+  .map-area:has(#map[data-phase="battle"]) .bottom-actions{display:grid!important}
+  .map-area .bottom-actions::after{display:none!important}
+  .map-area .bottom-actions button{
+    font-size:clamp(9px,.68vw,12px)!important;line-height:1!important;
+    background:#ffebc2f2!important;border:1px solid #98653b!important;border-radius:6px!important;
+    padding:1px 2px!important;box-shadow:0 1px 2px #54331c77!important;
+  }
+  .map-area .bottom-actions img{max-height:13px!important;max-width:13px!important}
+}
+#help{display:none!important}
+/* Restore predictable reading order; never clip wrapped text between bands. */
+.controls .panel-heading{
+  top:18.2%!important;height:3.5%!important;line-height:1.2!important;
+  font-size:clamp(16px,3.4cqw,22px)!important;overflow:visible!important;
+}
+.controls .panel-intro,.controls[data-panel-tab="dig"] .panel-intro{
+  top:22.7%!important;left:8%!important;width:84%!important;height:4.4%!important;
+  padding:0 1%!important;align-items:flex-start!important;
+  font-size:clamp(11px,2.55cqw,16px)!important;line-height:1.35!important;
+  white-space:normal!important;overflow:visible!important;overflow-wrap:normal!important;
+}
+.controls .route-toggle{top:18.2%!important;right:7%!important;height:3.2%!important}
+.controls .tools{top:29%!important;height:23.2%!important}
+.controls[data-panel-tab="trap"] .tools{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;gap:1.5% 1%!important;overflow:hidden!important;align-content:stretch!important;padding:0!important}
+.controls[data-panel-tab="trap"] .tools button.icon-only img{width:90%!important;height:90%!important;object-fit:contain!important}
+.controls[data-panel-tab="dig"] .tools{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:minmax(0,1fr)!important;gap:0 2%!important;align-items:stretch!important;padding:0 1%!important}
+.controls[data-panel-tab="dig"] .tools button.icon-only img{width:96%!important;height:96%!important;object-fit:contain!important}
+.controls[data-panel-tab="dig"] .tools button[data-mode="bedrock_break"] img{transform:scale(.9)!important}
+.controls[data-panel-tab="trap"] .tools button[data-mode="noise"] img{transform:scale(.9)!important}
+.controls .panel-selection{top:53.2%!important;height:12.2%!important;gap:3px!important;padding:1.7% 2.5%!important}
+.controls .panel-selection .selected-tool-title{line-height:1.25!important}
+.controls .panel-selection .hint{max-height:none!important;line-height:1.35!important}
+/* Match the three pre-illustrated forecast cards, avoiding overlaid lines. */
+.controls .panel-forecast{
+  top:74.7%!important;left:49.5%!important;width:43.4%!important;height:19.0%!important;
+  display:grid!important;grid-template-rows:repeat(3,minmax(0,1fr))!important;gap:0!important;
+}
+.controls .panel-forecast .forecast-row{
+  padding:0 3% 0 18%!important;min-height:0!important;
+  font-size:clamp(10px,2.3cqw,13px)!important;line-height:1.18!important;
+  font-weight:750!important;overflow:hidden!important;overflow-wrap:anywhere!important;
+}
+.controls .tools button.locked-resident.icon-only{position:relative;opacity:.55!important;background:transparent!important;border:0!important}
+.controls .tools button.locked-resident.icon-only img{width:92%;height:87%;object-fit:contain}
+.controls .tools button.locked-resident .lock-stage{position:absolute;bottom:0;left:2%;right:2%;padding:1px 0;background:#fff1d7e8;border:1px solid #b68b5b;border-radius:6px;color:#57351e;font-size:clamp(9px,1.8cqw,13px);line-height:1.1;white-space:nowrap}
+.controls .tools button.resident-placed{position:relative}
+.controls .tools button.resident-placed .placed-label{position:absolute;bottom:0;left:1%;right:1%;background:#ecdfc7ed;border:1px solid #946846;border-radius:5px;color:#49301b;font-size:clamp(9px,1.7cqw,12px);line-height:1.1;white-space:nowrap}
+#map .tile.placement-preview.preview-green{outline:3px solid #4bce68;outline-offset:-3px;box-shadow:inset 0 0 0 999px #5be77638}
+#map .tile.placement-preview.preview-red{outline:3px solid #d44545;outline-offset:-3px;box-shadow:inset 0 0 0 999px #fa505038}
+#map .tile.placement-preview.preview-yellow{outline:3px solid #e6a826;outline-offset:-3px;box-shadow:inset 0 0 0 999px #f5c83e3f}
+/* Old 24×13 decoration indices must never relocate the entrance and office. */
+#map .tile:nth-child(169)::after,#map .tile:nth-child(191)::after{content:none!important;background-image:none!important}
+#map .tile.entry .terrain-decor,#map .tile.office .terrain-decor{display:none!important}
+#map .tile.entry:has(.terrain-decor) .terrain-decor,#map .tile.office:has(.terrain-decor) .terrain-decor{display:flex!important;inset:0 auto auto 0!important;width:200%!important;height:200%!important}
+#map .tile.entry:has(.terrain-decor),#map .tile.office:has(.terrain-decor){z-index:9!important;overflow:visible!important}
+#map .tile.entry,#map .tile.office{overflow:visible!important}
+#map .tile.entry .terrain-decor img,#map .tile.office .terrain-decor img{width:100%;height:100%;max-width:none;max-height:none;object-fit:contain}
+/* The transparent source artwork needs a larger box to visually fill four tiles.
+   Anchor each prop inward so the map edge does not cut it in half. */
+#map .tile.entry:has(.terrain-decor) .terrain-decor{left:-20%!important;right:auto!important;top:-70%!important;width:340%!important;height:340%!important;pointer-events:none}
+#map .tile.office:has(.terrain-decor) .terrain-decor{left:auto!important;right:0!important;top:-45%!important;width:290%!important;height:290%!important;pointer-events:none}
+#map .tile.wall{background-image:url('assets/tiles/tile_wall(3).png')!important;background-size:100% 100%!important}
+#map .tile.bedrock{background-color:#394048!important;background-image:url('assets/tiles/tile_bedrock.png')!important;background-size:100% 100%!important;background-position:center!important;border-color:#5f6366!important}
+#map .tile.bedrock::before{content:none!important;display:none!important}
+#map .tile .spore-floor{position:absolute;inset:16%;border-radius:50%;background:#d4d89377;color:#7f9d3d;font-size:clamp(10px,1.1vw,18px);display:grid;place-items:center;pointer-events:none;z-index:3}
+/* Legacy portal markers were tied to tile indices and appeared as cut-off artwork. */
+#map .tile:nth-child(169)::after,#map .tile:nth-child(191)::after{content:none!important;background:none!important}
+/* Only actual entry/office tiles render portal art; stale pseudo-elements are never used. */
+#map .tile:not(.entry):not(.office)::after{content:none!important;background:none!important}
+/* All placement previews are non-interactive overlays inside their own tiles. */
+#map .tile .range-preview{position:absolute;inset:0;z-index:1;pointer-events:none;display:block}
+#map .tile.equip-valid .range-preview{background:#58d78030}
+#map .tile.equip-invalid .range-preview{background:#eb62622b}
+#map .tile.equip-effect .range-preview{background:#3eaad65b}
+#map .tile.equip-candidate{outline:3px solid #ffcf31!important;outline-offset:-3px;z-index:4}
+#map .tile.range-activity .range-preview{background:#5eaff133}
+#map .tile.range-search .range-preview{background:#ffe46545}
+#map .tile.range-support .range-preview{background:#8bd96e64}
+#map .tile.range-attack .range-preview{box-shadow:inset 0 0 0 3px #e85d5d99}
+#map .tile.alarm-route-overlap .range-preview{background:#eab5ed8a!important;box-shadow:inset 0 0 0 3px #d05ddd!important}
+#map .tile.route-high .range-preview{border-bottom:3px solid #8a5cd5a6}
+#map .tile.route-branch .range-preview{border-left:3px dashed #d58a5ce0}
+#map .tile.lure-range .range-preview{background:#bf82d648!important}
+#map .tile.lure-route-overlap .range-preview{background:#de84d68c!important}
+#map .tile.lure-entrance .range-preview{box-shadow:inset 0 0 0 4px #bd3ca8!important;background:#f5b5e777!important}
+#map .tile .preview-arrow{position:absolute;z-index:5;inset:0;display:grid;place-items:center;font-size:clamp(16px,1.6vw,28px);color:#854f19;text-shadow:0 1px #fff8d9;pointer-events:none}
+.controls .route-toggle{display:block!important}
+/* The supplied v9 toolbox has one large, unprinted forecast card. */
+.controls .panel-forecast{top:73.5%!important;left:50.1%!important;width:43.3%!important;height:19.3%!important;display:flex!important;flex-direction:column!important;gap:1.1%!important;align-items:stretch!important;overflow:hidden!important;pointer-events:none!important}
+.controls .panel-forecast #forecastWave{flex:0 0 auto!important;min-height:12%!important;justify-content:center!important;padding:0 2%!important;text-align:center!important;font-size:clamp(10px,2.8cqw,17px)!important;color:#54341e!important;font-weight:900!important}
+.controls .panel-forecast #forecastEnemies{display:flex!important;flex:1 1 auto!important;min-height:0!important;flex-direction:column!important;justify-content:center!important;align-items:stretch!important;gap:0!important;padding:0 4% 0 18%!important;overflow:hidden!important;font-size:clamp(10px,2.72cqw,17px)!important;line-height:1.26!important;color:#4d2b1a!important}
+.controls .panel-forecast .forecast-roster-line{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:3%!important;width:100%!important;min-height:0!important;padding:1.1% 0!important;white-space:nowrap!important}
+.controls .panel-forecast .forecast-roster-name{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;font-weight:850!important}
+.controls .panel-forecast .forecast-roster-count{flex:none!important;font-weight:900!important;white-space:nowrap!important}
+.controls .panel-forecast #forecastGoal{display:none!important}
+/* Keep text within the parchment cutouts of the supplied header, footer, and toolbox art. */
+@media (min-width:801px){
+  .hud .hud-stage{flex-direction:row!important;justify-content:center!important;align-items:center!important;gap:.45em!important;white-space:nowrap!important;padding:0 2%!important;overflow:hidden!important}
+  .hud .hud-stage small{font-size:clamp(11px,.83vw,15px)!important;line-height:1.1!important;white-space:nowrap!important;flex:none!important}
+  .hud .hud-stage #stageName{font-size:clamp(12px,1vw,18px)!important;line-height:1.1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important}
+  .hud .hud-progress{padding:0 5%!important}
+  .hud .hud-progress strong{right:10%!important;top:49%!important}
+  .hud .hud-progress .progress-track{right:11%!important;bottom:24%!important;width:57%!important}
+  .bottom-bar .bottom-guide{left:19%!important;top:23%!important;width:33.5%!important;height:57%!important}
+  .bottom-bar .bottom-guide .dialogue-box{padding:1% 3.5%!important;overflow:hidden!important}
+  .bottom-bar .bottom-guide .dialogue-box span{font-size:clamp(11px,.91vw,16px)!important;line-height:1.2!important}
+  .controls .panel-forecast{top:75.9%!important;left:50.7%!important;width:42.1%!important;height:16.3%!important}
+  .controls .panel-forecast #forecastWave{min-height:16%!important;font-size:clamp(10px,2.25cqw,14px)!important}
+  .controls .panel-forecast #forecastEnemies{padding:0 5% 0 10%!important;font-size:clamp(10px,2.45cqw,16px)!important}
+}
+#map .tile .lunchbox-count{position:absolute;right:1px;bottom:1px;z-index:9;padding:1px 3px;border-radius:5px;background:#fff0c8e8;color:#583619;font-size:clamp(8px,.8vw,12px);font-weight:900;pointer-events:none}
+#map .tile.lunchbox-target{box-shadow:inset 0 0 0 4px #40b777,inset 0 0 14px #93f5b699!important}
+#map .tile .natural-heal-pop{position:absolute;right:0;top:-13%;z-index:11;color:#1c9e51;background:#efffe7ed;border:1px solid #58b974;border-radius:5px;padding:0 2px;font-size:clamp(10px,.95vw,15px);font-weight:900;line-height:1.2;pointer-events:none;text-shadow:0 1px #fff}
+
+/* Place each portal illustration at the actual center of its 2×2 tile footprint. */
+#map .tile.entry:has(.terrain-decor) .terrain-decor{left:-70%!important;right:auto!important}
+#map .tile.office:has(.terrain-decor) .terrain-decor{left:-45%!important;right:auto!important}
+@media(min-width:801px){
+  /* Align the stage caption with the parchment and keep the two progress labels separate. */
+  .hud .hud-stage{transform:translateX(-2%)!important}
+  /* The header progress wrapper has zero computed height: use pixel offsets, not %. */
+  .hud .hud-progress strong{top:5px!important;right:8%!important}
+  .hud .hud-progress .progress-track{top:19px!important;bottom:auto!important;right:9%!important;width:62%!important}
+  /* Lower the landlord's dialogue inside the illustrated speech bubble. */
+  .bottom-bar .bottom-guide{top:31%!important;height:55%!important}
+}
+
+/* Typography inside the printed parchment is sized from the logical canvas. */
+@media(min-width:801px){
+  .hud .hud-stage small{font-size:20px!important;line-height:1.1!important}
+  .hud .hud-stage #stageName{font-size:22px!important;line-height:1.1!important}
+  .controls .panel-forecast #forecastWave{font-size:18px!important;line-height:1.15!important}
+  .bottom-bar .bottom-guide .dialogue-box span{
+    font-size:18px!important;line-height:1.25!important;
+    white-space:normal!important;text-wrap:balance!important;word-break:normal!important;
+  }
+}
+#map .tile.sign-predicted-path .range-preview{background:rgba(246,143,37,.39)!important;box-shadow:inset 0 0 0 2px rgba(231,109,13,.72)}
+#map .tile.predicted-path:not(.sign-predicted-path) .range-preview{background:rgba(52,196,222,.34)}
+#map .tile.sign-junction-selected{outline:3px solid #ffd35a;outline-offset:-3px;z-index:4}
+#map .tile.sign-junction-selected .preview-arrow{display:none}
+#map .tile .sign-direction-control{position:absolute;inset:19%;width:62%;height:62%;z-index:12;border:2px solid #9b4c11;border-radius:35%;background:#fff3c7;color:#813400;font-weight:900;font-size:clamp(18px,2vw,29px);line-height:1;cursor:pointer;box-shadow:0 2px 8px #3d210b99;touch-action:manipulation;padding:0}
+#map .tile .sign-direction-control:focus-visible{outline:3px solid #00aada}
