@@ -1,0 +1,18 @@
+/* Title and persistence notices reuse the original warm wood and paper palette. */
+.wake-title-screen{background:linear-gradient(#25180cd9,#25180cf2),url('assets/story/story_01_opening.webp') center/cover no-repeat}
+.wake-title-screen .dialog{width:min(900px,92vw);max-width:none;max-height:calc(100dvh - 48px);overflow:visible;text-align:center;border:5px solid #a77c48;background:linear-gradient(145deg,#fff0cc,#ead2a2);color:#493220;padding:40px 48px;box-shadow:0 14px 48px #160d0877}
+.wake-title-screen .dialog #modalTitle{font-size:56px;line-height:1.2;color:#68431f;text-shadow:0 2px #fff7dd;margin:0 0 14px}
+.wake-title-screen .dialog .wake-title-sub{font-size:32px;line-height:1.45;font-weight:700;margin:0 0 28px}
+.wake-title-screen .dialog .wake-title p:not(.wake-title-sub){font-size:26px;line-height:1.8;margin:0}
+.wake-title-screen .dialog #modalActions{display:flex;justify-content:center;gap:22px;flex-wrap:nowrap;margin-top:34px;max-height:none;overflow:visible}
+.wake-title-screen .dialog #modalActions button{flex:1 1 0;min-width:0;max-width:340px;min-height:76px;font-size:27px;line-height:1.4;padding:18px 24px}
+.wake-title-screen button:disabled{opacity:.45;cursor:not-allowed}
+.autosave-status{position:absolute;right:15px;bottom:5px;color:#5d4228;font-size:12px;pointer-events:none}.autosave-status.save-error{background:#fff1cf;color:#8a2318;max-width:420px;padding:4px 8px}
+@media(max-width:650px),(max-height:580px){
+ .wake-title-screen .dialog{width:min(900px,96vw);max-height:none;padding:24px 18px}
+ .wake-title-screen .dialog #modalTitle{font-size:34px}
+ .wake-title-screen .dialog .wake-title-sub{font-size:24px;margin-bottom:18px}
+ .wake-title-screen .dialog .wake-title p:not(.wake-title-sub){font-size:20px}
+ .wake-title-screen .dialog #modalActions{gap:12px;margin-top:22px}
+ .wake-title-screen .dialog #modalActions button{font-size:21px;min-height:58px;padding:12px}
+}
