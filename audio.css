@@ -1,0 +1,158 @@
+/* Audio dock and settings popover matching the warm wood-and-parchment palette. */
+#audioDock{
+  position:fixed;
+  top:calc(var(--composition-header-h, 96px) + 6px);
+  right:14px;
+  z-index:10050;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+  font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  pointer-events:none;
+}
+body:has(#modal.wake-title-screen:not(.hidden)) #audioDock,
+body:has(#storyOverlay:not(.hidden)) #audioDock{
+  top:12px;
+  right:14px;
+}
+#audioDock > *{
+  pointer-events:auto;
+}
+#audioToggleBtn{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  min-height:30px;
+  padding:4px 10px;
+  border:2px solid #8b603b;
+  border-radius:10px;
+  background:linear-gradient(180deg,#fff3d1,#e6c184);
+  color:#4c2b14;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.1;
+  box-shadow:0 2px 6px rgba(24,12,6,.36);
+  cursor:pointer;
+}
+#audioToggleBtn:hover{
+  filter:brightness(1.06);
+}
+#audioToggleBtn:focus-visible{
+  outline:3px solid #f6c74e;
+  outline-offset:2px;
+}
+#audioToggleBtn.is-muted{
+  background:linear-gradient(180deg,#e4d5ba,#c7b08e);
+  color:#6b523d;
+}
+#audioPopover{
+  width:258px;
+  padding:12px 14px;
+  border:3px solid #8b603b;
+  border-radius:14px;
+  background:linear-gradient(160deg,#fff3d6,#ebd09f);
+  color:#493220;
+  box-shadow:0 10px 28px rgba(18,9,4,.48);
+}
+#audioPopover[hidden]{
+  display:none;
+}
+.audio-pop-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+  padding-bottom:6px;
+  border-bottom:1px solid #c9a16b;
+}
+.audio-pop-head strong{
+  font-size:14px;
+  color:#5c3718;
+}
+.audio-close-btn{
+  padding:3px 9px;
+  border:1px solid #9c6e44;
+  border-radius:8px;
+  background:#fff7e2;
+  color:#5c3718;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.audio-row{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  margin-bottom:10px;
+}
+.audio-row:last-of-type{
+  margin-bottom:0;
+}
+.audio-row-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.audio-label{
+  font-size:13px;
+  font-weight:800;
+  color:#4d2e17;
+}
+.audio-row-controls{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.audio-mute-btn{
+  min-width:56px;
+  padding:3px 8px;
+  border:1px solid #8f6037;
+  border-radius:8px;
+  background:#2d7858;
+  color:#fff8e6;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.audio-mute-btn[aria-pressed="false"]{
+  background:#9d856b;
+  color:#fff7ea;
+}
+.audio-pct{
+  min-width:36px;
+  text-align:right;
+  font-size:12px;
+  font-weight:700;
+  color:#5b3b1e;
+}
+.audio-slider{
+  width:100%;
+  accent-color:#b96739;
+  cursor:pointer;
+  height:18px;
+}
+@media(max-width:800px){
+  #audioDock{
+    top:auto;
+    bottom:10px;
+    right:10px;
+    flex-direction:column-reverse;
+  }
+  body:has(#modal.wake-title-screen:not(.hidden)) #audioDock,
+  body:has(#storyOverlay:not(.hidden)) #audioDock{
+    top:8px;
+    bottom:auto;
+    right:8px;
+    flex-direction:column;
+  }
+  #audioToggleBtn{
+    font-size:12px;
+    padding:4px 8px;
+    min-height:28px;
+  }
+  #audioPopover{
+    width:min(250px,calc(100vw - 20px));
+  }
+}
